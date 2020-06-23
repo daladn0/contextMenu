@@ -4,7 +4,8 @@ function createContextMenu(options = {}) {
   menu.classList.add('contextMenu')
 
   // Create items
-  options.items.forEach(item => {
+  if ( Array.isArray(options.items) && options.items.length > 0 ) {
+    options.items.forEach(item => {
       let menuItem = document.createElement('div')
       menuItem.classList.add('contextItem')
       menuItem.innerHTML = Object.keys(item)
@@ -13,7 +14,8 @@ function createContextMenu(options = {}) {
       menuItem.addEventListener('click', Object.values(item)[0])
 
       menu.append(menuItem)
-  });
+    });
+  }
 
   // Add menu to body
   document.body.append(menu)
